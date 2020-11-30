@@ -1,17 +1,37 @@
 package com.hz;
 
+import products.Product;
+
 public class Customer {
 
     private CustomerType customerType;
+
+    public String getName() {
+        return name;
+    }
+
     private String name;
+
+    public ShoppingCart getCart() {
+        return cart;
+    }
+
+    private ShoppingCart cart;
 
     public Customer(CustomerType customerType, String name) {
         this.customerType = customerType;
         this.name = name;
 
+        DiscountCalculator calculator = new DiscountCalculator(this);
+
+        this.cart = new ShoppingCart(calculator);
     }
 
-    private boolean isRegular() {
+    public void buys(Product product) {
+        this.cart.add(product);
+    }
+
+    public boolean isRegular() {
 
         return this.customerType == CustomerType.Regular;
     }
