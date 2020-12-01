@@ -5,19 +5,15 @@ import java.util.ArrayList;
 
 public class ShoppingCart extends ArrayList<Product> {
 
-    private DiscountCalculator discountCalculator;
-
-    public ShoppingCart(DiscountCalculator discountCalculator) {
-        this.discountCalculator = discountCalculator;
-    }
-
-    public double getTotalPrice() {
+    public double getTotalPrice(DiscountCalculator discountCalculator) {
 
         double totalPrice = 0.0;
 
         for(Product product : this) {
 
-            double discount = discountCalculator.getDiscount(product);
+            int index = this.indexOf(product);
+
+            double discount = discountCalculator.getDiscount(product, index);
             double price = product.getPrice() * discount;
 
             totalPrice += price;

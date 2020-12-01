@@ -22,9 +22,7 @@ public class Customer {
         this.customerType = customerType;
         this.name = name;
 
-        DiscountCalculator calculator = new DiscountCalculator(this);
-
-        this.cart = new ShoppingCart(calculator);
+        this.cart = new ShoppingCart();
     }
 
     public void buys(Product product) {
