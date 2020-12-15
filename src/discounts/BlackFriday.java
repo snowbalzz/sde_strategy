@@ -17,6 +17,6 @@ public class BlackFriday implements Discount{
         double discount = productCount < maxDiscount
                 ? productCount : maxDiscount;
 
-        return discount / 10;
+        return discount / 100;
     }
 }
