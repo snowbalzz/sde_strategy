@@ -1,20 +1,17 @@
 package com.hz;
 
+import discounts.CurrentDiscount;
+import discounts.Discount;
+
 public class Checkout {
 
-    private SalesAction salesAction;
+    private Discount discounter;
 
-    public Checkout(SalesAction action) {
-        this.salesAction = action;
+    public Checkout(Discount discount) {
+        this.discounter = discount;
     }
 
     public void nextInLine(Customer customer) {
-
-        // init checkout
-        DiscountCalculator discountCalculator = new DiscountCalculator(customer);
-        if(salesAction == SalesAction.ChristmasEve) {
-            discountCalculator.setChristmasEve(true);
-        }
 
         // Welcome customer
         String welcome = String.format("Hello %s, would you pass me your shopping cart?",
@@ -24,7 +21,7 @@ public class Checkout {
         // perform checkout
         ShoppingCart cart = customer.getCart();
 
-        double amountToPay = cart.getTotalPrice(discountCalculator);
+        double amountToPay = cart.getTotalPrice(discounter);
         String payinfo = String.format("Let's see, that will be.. %.02f. Cash or card?", amountToPay);
         Console.write(payinfo);
     }

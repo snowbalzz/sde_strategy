@@ -1,8 +1,8 @@
 package com.hz;
 
-import products.BlenderWithIntegratedRadio;
+import discounts.CurrentDiscount;
 import products.CuteTeddyBear;
-import products.TVScreen;
+
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         // There is a shop with a checkout
-        Checkout kassa5 = new Checkout(SalesAction.ChristmasEve);
+        Checkout kassa5 = new Checkout(CurrentDiscount.getDiscountByAction(SalesAction.Friday));
 
         // Two customers enter the shop
         Customer piet = new Customer(CustomerType.Regular, "Piet");
@@ -18,7 +18,10 @@ public class Main {
 
         // buying stuff
         piet.buys(new CuteTeddyBear());
+//        piet.buys(new CuteTeddyBear());
+
         anne.buys(new CuteTeddyBear());
+//        anne.buys(new CuteTeddyBear());
 
         // and proceed to checkout
         kassa5.nextInLine(piet);
